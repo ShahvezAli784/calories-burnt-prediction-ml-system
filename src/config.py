@@ -18,3 +18,17 @@ MODEL_DIR = BASE_DIR / "models"
 TRAINED_MODEL_DIR = MODEL_DIR / "trained"
 CHECKPOINT_DIR = MODEL_DIR / "checkpoints"
 METRICS_DIR = MODEL_DIR / "metrics"
+
+
+# Train/Test Split Configuration
+TEST_SIZE = 0.2
+RANDOM_STATE = 42
+
+# Model Configuration
+
+XGB_PARAMS = {
+    "random_state": 42,
+    "n_estimators": 100,
+    "learning_rate": 0.1,
+    "max_depth": 6,
+}
