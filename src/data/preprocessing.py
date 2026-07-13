@@ -28,6 +28,16 @@ REQUIRED_COLUMNS = [
     "Calories",
 ]
 
+PREDICTION_COLUMNS = [
+    "Gender",
+    "Age",
+    "Height",
+    "Weight",
+    "Duration",
+    "Heart_Rate",
+    "Body_Temp",
+]
+
 
 def validate_dataframe(df: pd.DataFrame) -> None:
     """
@@ -120,3 +130,37 @@ def preprocess_data(
     logger.info("Preprocessing completed successfully.")
 
     return X, y
+
+def preprocess_input(
+    df: pd.DataFrame,
+) -> pd.DataFrame:
+    """
+    Preprocess input data for prediction.
+
+    Args:
+        df: Raw input dataframe.
+
+    Returns:
+        Processed feature dataframe.
+    """
+
+    logger.info("Preprocessing prediction input...")
+
+    missing_columns = [
+        column
+        for column in PREDICTION_COLUMNS
+        if column not in df.columns
+    ]
+
+    if missing_columns:
+        raise ValueError(
+            f"Missing columns: {missing_columns}"
+        )
+
+    df = encode_gender(df)
+
+    X = df[PREDICTION_COLUMNS].copy()
+
+    logger.info("Prediction preprocessing completed.")
+
+    return X

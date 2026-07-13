@@ -1,28 +1,21 @@
+from functools import lru_cache
 import pickle
 
-from app.core.config import MODEL_PATH
+from src.config import TRAINED_MODEL_DIR
 
 
-class ModelLoader:
+DEFAULT_MODEL_NAME = "xgb_model.pkl"
+
+
+@lru_cache(maxsize=1)
+def load_model(
+    model_name: str = DEFAULT_MODEL_NAME,
+):
     """
-    Loads the trained ML model once when the application starts.
+    Load and cache the trained model.
     """
 
-    def __init__(self):
-        self.model = self._load_model()
+    model_path = TRAINED_MODEL_DIR / model_name
 
-    def _load_model(self):
-        """
-        Load the trained model from disk.
-        """
-        with open(MODEL_PATH, "rb") as file:
-            return pickle.load(file)
-
-    def get_model(self):
-        """
-        Return the loaded model.
-        """
-        return self.model
-
-
-model_loader = ModelLoader()
+    with open(model_path, "rb") as file:
+        return pickle.load(file)

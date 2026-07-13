@@ -100,7 +100,7 @@ def load_exercise() -> pd.DataFrame:
 
 
 
-def load_dataset() -> pd.DataFrame:
+def load_data() -> pd.DataFrame:
     """
     Load and combine project datasets.
 

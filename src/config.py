@@ -25,6 +25,7 @@ TEST_SIZE = 0.2
 RANDOM_STATE = 42
 
 # Model Configuration
+DEFAULT_MODEL_NAME = "xgb_model.pkl"
 
 XGB_PARAMS = {
     "random_state": 42,
@@ -32,3 +33,4 @@ XGB_PARAMS = {
     "learning_rate": 0.1,
     "max_depth": 6,
 }
+

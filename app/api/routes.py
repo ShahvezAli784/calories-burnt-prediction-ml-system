@@ -2,22 +2,22 @@ from fastapi import APIRouter
 
 from app.schemas.request import PredictionRequest
 from app.schemas.response import PredictionResponse
-from app.services.prediction_service import prediction_serivice
+from app.services.prediction_service import prediction_service
 
-route = APIRouter()
+router = APIRouter()
 
-@route.post(
-    "/predic",
+@router.post(
+    "/predict",
     response_model=PredictionResponse,
     summary="Predict calories burnt",
     tags=["Prediction"]
 )
 
 def predict(request:PredictionRequest):
-    prediction = prediction_serivice.predict(request)
+    prediction = prediction_service.predict(request)
     
     return PredictionResponse(
-        predict_calories = prediction
+        predicted_calories = prediction
     )
     
 @router.get(
