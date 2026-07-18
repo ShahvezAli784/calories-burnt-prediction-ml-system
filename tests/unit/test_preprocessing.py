@@ -10,22 +10,6 @@ from src.data.preprocessing import (
 )
 
 
-@pytest.fixture
-def sample_dataframe():
-    return pd.DataFrame(
-        {
-            "User_ID": [1],
-            "Gender": ["male"],
-            "Age": [25],
-            "Height": [175],
-            "Weight": [70],
-            "Duration": [30],
-            "Heart_Rate": [110],
-            "Body_Temp": [37.2],
-            "Calories": [250],
-        }
-    )
-
 
 def test_validate_dataframe_success(sample_dataframe):
     validate_dataframe(sample_dataframe)
